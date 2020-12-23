@@ -1,0 +1,335 @@
+/*
+This is a good layout for a mobile-first CSS template.
+Following this flow will minimize the number of styles you need to write and will ensure you are thinking, designing and developing mobile-first.
+Most of your styles get written like standard CSS, but for your mobile presentation. Generally speaking, a good mobile presention will stretch out nicely for larger screens.
+
+Sometimes, when we stretch out to larger screens, we need to make minor tweaks for the larger devices -- you can make these tweaks in the tablet media query, or if the issue exists on desktop only, the desktop media query.
+You will find this is far easier than the opposite task of using CSS to cram your desktop experience into a mobile device.
+*/
+/*********************************************************************
+ LOADS IN A NICE RESET TO ENSURE ALL BROWSERS HAVE THE SAME BASE STYLES
+*********************************************************************/
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css');
+
+/*********************************************************************
+  YOUR MOBILE/BASE STYLES GO HERE
+*********************************************************************/
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    /* Sets default font-size to 16px, ensuring 1em = 16px; */
+    background-color: #212629;
+    font-size: 16px;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.6;
+    color: black;
+}
+
+body.lock {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 800;
+    color: white;
+    line-height: 100%;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 500;
+    font-style: italic;
+    color: white;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+p {
+    display: table;
+    background-color: rgb(255, 255, 255, 0.8);
+    padding: 10px;
+}
+
+.intro-box {
+    display: flexbox;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 900px;
+    position: absolute;
+    bottom: 25%;
+    left: 25%
+}
+
+.all_backgrounds {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.background.video {
+    position: absolute;
+}
+
+.background.active {
+    opacity: 1;
+}
+
+.yt_background {
+    min-width: 1920px;
+    max-height: auto;
+}
+
+/* start pulse button */
+.pulse-button {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border: none;
+    box-shadow: 0 0 0 0 rgba(214, 214, 214, 0.7);
+    border-radius: 50%;
+    background-color: #d6d6d6;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+.pulse-button:hover {
+    -webkit-animation: none;
+    -moz-animation: none;
+    -ms-animation: none;
+    animation: none;
+}
+
+@-webkit-keyframes pulse {
+    to {
+        box-shadow: 0 0 0 45px rgba(214, 214, 214, 0);
+    }
+}
+
+@-moz-keyframes pulse {
+    to {
+        box-shadow: 0 0 0 45px rgba(214, 214, 214, 0);
+    }
+}
+
+@-ms-keyframes pulse {
+    to {
+        box-shadow: 0 0 0 45px rgba(214, 214, 214, 0);
+    }
+}
+
+@keyframes pulse {
+    to {
+        box-shadow: 0 0 0 45px rgba(214, 214, 214, 0);
+    }
+}
+
+/* end pulse button */
+/* sound button */
+a.btn {
+    padding: 25px;
+    background-color: #FFF;
+    color: #000;
+    border-radius: 10px;
+}
+
+.soundcontrol {
+    position: fixed;
+    z-index: 3;
+    bottom: 5px;
+    right: 5px;
+    width: auto;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.lock .soundcontrol {
+    opacity: 0;
+}
+
+/** RESPONSIVE IMAGES */
+figure,
+img {
+    /* Sets image width to match parent */
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+p {
+    line-height: 1.2em;
+}
+
+/** Caption styles */
+.caption,
+figcaption {
+    font-size: 0.9rem;
+    color: #8e8a8a;
+    padding: 5px 0;
+}
+
+/** BASE CLASSES */
+/** Container styles to keep content from becoming too wide or coming too close to
+* mobile edge */
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/** Images are allowed to be a little wider when broken out into their own container */
+.container.image {
+    max-width: 1200px;
+    padding: 0;
+}
+
+.container.image .caption,
+.container.image figcaption {
+    padding: 5px 10px;
+}
+
+.desktop {
+    display: none;
+}
+
+.mobile {
+    display: block;
+}
+
+/** Screens are the size of at least one device screen */
+.screen {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    z-index: 3;
+}
+
+/** for vertical centering */
+.screen.padd {
+    padding-top: 25%;
+}
+
+/** video setup */
+.video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: calc(9 / 16 * 100%);
+}
+
+.video.vertical {
+    padding-bottom: calc(16 / 9 * 100%);
+}
+
+.video iframe,
+.video video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 0;
+}
+
+/** TEXT FADE IN */
+.fade-in {
+    animation: fadeIn ease 10s;
+    -webkit-animation: fadeIn ease 10s;
+    -moz-animation: fadeIn ease 10s;
+    -o-animation: fadeIn ease 10s;
+    -ms-animation: fadeIn ease 10s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/*********************************************************************
+  YOUR TABLET/DESKTOP STYLES GO HERE
+*********************************************************************/
+@media(min-width: 681px) {
+    /* Any adjustments for tablets and larger go here.
+    Note these styles will be applied to anything 681px or larger -- so tablet AND desktop */
+}
+
+/*********************************************************************
+  YOUR DESKTOP-ONLY STYLES GO HERE
+*********************************************************************/
+@media(min-width: 729px) {
+    /* Any adjustments for desktop and larger go here.
+    Note these styles will be applied to anything 729px or larger -- so desktop */
+}
